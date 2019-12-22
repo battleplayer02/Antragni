@@ -534,5 +534,9 @@
     <string name="change_password_success_message">Password changed successfully!</string>
     <string name="tickets_for">Ticket(s) for %1$s</string>
     <string name="error_making_paypal_payment_message">Fail on making Paypal payment</string>
+    <string name="title_activity_bottom_nav_home">BottomNavHome</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_activity_home_bottom_nav">HomeBottomNav</string>
 
 </resources>
