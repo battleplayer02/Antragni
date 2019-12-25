@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Eventyay Attendee</string>
+    <string name="app_name" translatable="false">Antragini</string>
     <string name="events">Events</string>
     <string name="profile">Profile</string>
     <string name="likes">Likes</string>
@@ -163,9 +163,9 @@
     <string name="order_identifier_preview" translatable="false">3456789</string>
     <string name="location_preview" translatable="false">Singapore</string>
     <string name="date_preview" translatable="false">Thu,June 14</string>
-    <string name="event_preview" translatable="false">FOSSASIA summit</string>
-    <string name="name_preview" translatable="false">Nikit Bhandari</string>
-    <string name="email_preview" translatable="false">fossasia.asia@gmail.com</string>
+    <string name="event_preview" translatable="false">Antragni</string>
+    <string name="name_preview" translatable="false">Himanshu Shekhar</string>
+    <string name="email_preview" translatable="false">himanshu00qwerty@gmail.com</string>
     <string name="checkin_status">Check-in status</string>
     <string name="checked_in">Checked In</string>
     <string name="not_checked_in">Not Checked In</string>
@@ -538,5 +538,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_activity_home_bottom_nav">HomeBottomNav</string>
+    <string name="title_activity_home">Home</string>
+    <string name="title_activity_participants">Participants</string>
 
 </resources>

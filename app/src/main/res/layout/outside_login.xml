@@ -69,13 +69,4 @@
         android:id="@+id/forgetpassword"
         android:textSize="15sp"
         android:textColor="@android:color/holo_blue_light"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Not Have Account? Register"
-        android:id="@+id/signup"
-        android:textSize="15sp"
-        android:textColor="@android:color/holo_blue_light"/>
 </LinearLayout>

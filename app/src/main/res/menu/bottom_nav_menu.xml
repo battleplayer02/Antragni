@@ -7,17 +7,13 @@
         android:title="@string/title_home" />
 
     <item
-        android:id="@+id/navigation_search"
-        android:icon="@drawable/ic_search_grey"
-        android:title="Search" />
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/title_dashboard" />
 
     <item
-        android:id="@+id/navigation_event"
-        android:icon="@drawable/ic_baseline_event_grey"
-        android:title="Events" />
-    <item
         android:id="@+id/navigation_profile"
-        android:icon="@drawable/ic_person_black"
+        android:icon="@drawable/ic_outline_account_circle"
         android:title="Profile" />
 
 </menu>

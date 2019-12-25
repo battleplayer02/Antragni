@@ -12,19 +12,14 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_search"
+        android:id="@+id/navigation_dashboard"
         android:name="com.example.antragni.ui.dashboard.DashboardFragment"
-        android:label="Search"
+        android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_event"
-        android:name="com.example.antragni.ui.notifications.NotificationsFragment"
-        android:label="Events"
-        tools:layout="@layout/fragment_notifications" />
-    <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.example.antragni.ui.profile.Profile"
-        android:label="Profile"
-        tools:layout="@layout/profile_fragment" />
+        android:name="com.example.antragni.ui.profile.NotificationsFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

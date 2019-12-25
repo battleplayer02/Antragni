@@ -1,13 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <TextView
+    android:layout_height="match_parent">
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeToRefresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="hii"/>
-</LinearLayout>
+        android:layout_height="match_parent">
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scrollView"
+            android:orientation="vertical"
+            android:fitsSystemWindows="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/background_fragment"
+                    android:scaleType="fitXY"/>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:padding="@dimen/padding_large">
+                        <ImageView
+                            android:id="@+id/notification"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?selectableItemBackground"
+                            android:src="@drawable/ic_notifications_white"/>
+                        <ImageView
+                            android:id="@+id/newNotificationDot"
+                            android:layout_width="@dimen/text_size_small"
+                            android:layout_height="@dimen/text_size_small"
+                            android:src="@drawable/ic_circle"/>
+                    </RelativeLayout>
+
+                    <ImageView
+                        android:id="@+id/eventIcon"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_marginTop="@dimen/layout_margin_extra_large"
+                        android:layout_marginStart="@dimen/layout_margin_large"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/ic_event"/>
+                    <TextView
+                        android:id="@+id/whatIsGoodText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_margin_extra_large"
+                        android:text="What's good in"
+                        android:textColor="@color/white"
+                        android:textSize="25sp"
+                        android:layout_marginStart="@dimen/layout_margin_extra_large"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintLeft_toRightOf="@+id/eventIcon" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/layout_margin_extra_large"
+                        android:text="GHRCE"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+                        android:layout_marginStart="@dimen/layout_margin_extra_large"
+                        app:layout_constraintTop_toTopOf="@id/whatIsGoodText"
+                        app:layout_constraintLeft_toRightOf="@+id/eventIcon" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/eventsRecycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/layout_margin_medium"
+                        android:layout_marginEnd="@dimen/layout_margin_medium"
+                        android:layout_marginTop="@dimen/layout_margin_extra_large"
+                        app:layout_constraintTop_toBottomOf="@id/eventIcon"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        android:scrollbars="vertical" />
+
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmerEvents"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@id/eventsRecycler"
+                        app:layout_constraintLeft_toLeftOf="parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <include layout="@layout/placeholder_item_card_events" />
+                            <include layout="@layout/placeholder_item_card_events" />
+                            <include layout="@layout/placeholder_item_card_events" />
+                        </LinearLayout>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </FrameLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</FrameLayout>

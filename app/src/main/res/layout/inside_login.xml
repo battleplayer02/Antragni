@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="10dp"
+    android:theme="@style/AppTheme"
     android:orientation="vertical">
 
     <TextView
@@ -33,7 +34,6 @@
         android:layout_marginBottom="@dimen/padding_medium"
         android:layout_marginTop="@dimen/padding_medium"
         app:passwordToggleEnabled="false">
-
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email"
             android:layout_width="match_parent"
@@ -43,13 +43,12 @@
             android:hint="Email"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
-
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="NEXT"
+        android:id="@+id/next"
         android:textStyle="bold"
         android:textSize="20sp"/>
-
 </LinearLayout>
