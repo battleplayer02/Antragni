@@ -39,29 +39,36 @@
                  android:layout_height="50dp"
                  android:text="22th DEC"
                  android:id="@+id/datecard"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="22th DEC"
-                    android:id="@+id/eventname"
-                    android:layout_marginBottom="10dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="22th DEC"
-                    android:id="@+id/placecard"
-                    android:layout_marginBottom="10dp"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="22th DEC"
-                    android:id="@+id/typecard"/>
-            </LinearLayout>
+                    android:layout_marginLeft="10dp"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="22th DEC"
+                        android:id="@+id/eventname"
+                        android:layout_marginBottom="10dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="22th DEC"
+                        android:id="@+id/placecard"
+                        android:layout_marginBottom="10dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="22th DEC"
+                        android:id="@+id/eventamount"
+                        android:layout_marginBottom="10dp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="22th DEC"
+                        android:id="@+id/typecard"/>
+                </LinearLayout>
             </LinearLayout>
 
 

@@ -160,13 +160,13 @@
                 android:background="?attr/selectableItemBackground"
                 android:text="@string/settings"/>
             <TextView
-                android:id="@+id/manageEvents"
+                android:id="@+id/addEvents"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/text_size_large"
                 android:paddingTop="@dimen/padding_small"
                 android:paddingBottom="@dimen/padding_small"
-                android:text="@string/manage_events"
+                android:text="Add Events"
                 android:background="?attr/selectableItemBackground"/>
             <TextView
                 android:id="@+id/ticketIssues"

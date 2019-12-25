@@ -2,9 +2,6 @@ package com.example.antragni.ui.home;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +14,6 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.antragni.InsideEvent;
-import com.example.antragni.InsideLogin;
 import com.example.antragni.R;
 
 import java.util.ArrayList;
@@ -41,7 +37,7 @@ public class HomeAdatper extends RecyclerView.Adapter<HomeAdatper.HomeViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final HomeViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull HomeViewHolder holder, int position) {
         final HomePojo homePojo = homePojoArrayList.get(position);
 
         String pro_img=homePojo.getEventpic();
@@ -53,9 +49,10 @@ public class HomeAdatper extends RecyclerView.Adapter<HomeAdatper.HomeViewHolder
         holder.placecard.setText(homePojo.getPlacecard());
         holder.typecard.setText(homePojo.getTypecard());
         holder.eventname.setText(homePojo.getEventname());
+        holder.eventamount.setText(homePojo.getEventamount());
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 ctx.startActivity(new Intent(ctx, InsideEvent.class));
             }
         });
@@ -67,16 +64,18 @@ public class HomeAdatper extends RecyclerView.Adapter<HomeAdatper.HomeViewHolder
 
     public class HomeViewHolder extends RecyclerView.ViewHolder {
         ImageView imgcard;
+        TextView datecard,placecard,typecard,eventname,eventamount;
         CardView cardView;
-        TextView datecard,placecard,typecard,eventname;
+
         public HomeViewHolder(@NonNull View itemView) {
             super(itemView);
 //            imgcard=itemView.findViewById(R.id.eventpic);
-            cardView = itemView.findViewById(R.id.allEventsCard);
             datecard=itemView.findViewById(R.id.datecard);
             placecard=itemView.findViewById(R.id.placecard);
             typecard=itemView.findViewById(R.id.typecard);
             eventname=itemView.findViewById(R.id.eventname);
+            cardView=itemView.findViewById(R.id.allEventsCard);
+            eventamount=itemView.findViewById(R.id.eventamount);
         }
     }
 }
