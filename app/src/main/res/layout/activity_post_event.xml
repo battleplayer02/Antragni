@@ -90,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/layout_margin_moderate"
-                android:hint="Event Date"/>
+                android:hint="Event Date(Please Click Here)"/>
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -119,6 +119,7 @@
             android:id="@+id/eventdescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="bottom"
             android:layout_marginBottom="@dimen/padding_medium"
             android:layout_marginTop="@dimen/padding_medium"
             app:passwordToggleEnabled="false">
@@ -126,10 +127,9 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/eventDescription"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawablePadding="@dimen/layout_margin_moderate"
-                android:hint="Event Description"
-                android:inputType="text" />
+                android:layout_height="300dp"
+                android:inputType="textMultiLine"
+                android:hint="Event Description" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -166,6 +166,23 @@
                 android:drawablePadding="@dimen/layout_margin_moderate"
                 android:hint="Event Place"
                 android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_medium"
+            android:layout_marginTop="@dimen/padding_medium"
+            app:passwordToggleEnabled="false">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/eventnoofparticipant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/layout_margin_moderate"
+                android:hint="No of Participants"
+                android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button

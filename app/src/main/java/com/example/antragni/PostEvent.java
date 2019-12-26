@@ -33,7 +33,7 @@ import java.util.Map;
 
 public class PostEvent extends AppCompatActivity {
 
-    EditText ename,edate,eplace,edesc,cname,cnumber,eamount,etype;
+    EditText ename,edate,eplace,edesc,cname,cnumber,eamount,etype,enop;
     Button createEvent,eventImage;
     final Calendar myCalendar = Calendar.getInstance();
     private static final String URL_REGIST ="http://himanshushekhar.ml/antragini/insertevent.php" ;
@@ -51,7 +51,7 @@ public class PostEvent extends AppCompatActivity {
         eamount=(EditText)findViewById(R.id.eventAmount);
         edate=(EditText)findViewById(R.id.eventDate);
         etype=(EditText)findViewById(R.id.eventType);
-
+        enop=(EditText)findViewById(R.id.eventnoofparticipant) ;
         createEvent=(Button)findViewById(R.id.createEvent);
         eventImage=(Button)findViewById(R.id.eventImage);
 
@@ -154,6 +154,7 @@ public class PostEvent extends AppCompatActivity {
                 params.put("edesc",edesc.getText().toString());
                 params.put("eplace",eplace.getText().toString());
                 params.put("eamount",eamount.getText().toString());
+                params.put("enop",enop.getText().toString());
                 return params;
             }
         };
