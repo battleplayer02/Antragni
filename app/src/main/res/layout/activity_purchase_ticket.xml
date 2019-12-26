@@ -4,11 +4,88 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_marginLeft="@dimen/layout_margin_medium"
+    android:layout_gravity="center"
     android:layout_marginRight="@dimen/layout_margin_medium"
-    android:padding="@dimen/layout_margin_medium"
+    android:padding="50dp"
     android:elevation="@dimen/card_elevation"
     android:background="@drawable/border">
 
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_medium"
+        android:layout_marginTop="@dimen/padding_medium"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/amount"
+            android:layout_width="match_parent"
+            android:editable="false"
+            android:hint="Amount"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/layout_margin_moderate"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_medium"
+        android:layout_marginTop="@dimen/padding_medium"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/upiid"
+            android:layout_width="match_parent"
+            android:editable="false"
+            android:hint="Amount"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/layout_margin_moderate"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/padding_medium"
+        android:layout_marginTop="@dimen/padding_medium"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sender"
+            android:layout_width="match_parent"
+            android:editable="false"
+            android:hint="Amount"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/layout_margin_moderate"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <RadioGroup
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:layout_width="wrap_content"
+            android:text="Pay By Cash"
+            android:id="@+id/payByCash"
+            android:layout_height="wrap_content"/>
+
+        <com.google.android.material.radiobutton.MaterialRadioButton
+            android:id="@+id/payByUPI"
+            android:text="Pay By UPI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RadioGroup>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/register"

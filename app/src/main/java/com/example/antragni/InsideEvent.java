@@ -26,12 +26,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class InsideEvent extends AppCompatActivity {
-
+    JSONObject jsonObject;
     TextView ename,cname,cnumber,edate,eplace,ecategory,eamount,edesc;
     String eventid;
     Button button;
     private static final String URL_REGIST ="http://himanshushekhar.ml/antragini/insideEvent.php" ;
-
+    String cn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +56,14 @@ public class InsideEvent extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(InsideEvent.this,PurchaseTicket.class));
+                try {
+                    Intent intent=new Intent(InsideEvent.this,PurchaseTicket.class);
+                    intent.putExtra("name",cn);
+                    intent.putExtra("eventAmount",jsonObject.getString("cost"));
+                    startActivity(intent);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -68,13 +75,14 @@ public class InsideEvent extends AppCompatActivity {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            JSONObject jsonObject=new JSONObject(response);
+                            jsonObject=new JSONObject(response);
                             System.out.println(response+"response");
                             String success=jsonObject.getString("success");
 
 
                             if (success.equals("1"))
                             {
+                                cn=jsonObject.getString("coordinator").toUpperCase();
                                 ecategory.setText(jsonObject.getString("category"));
                                 cname.setText("By: "+jsonObject.getString("coordinator").toUpperCase());
                                 cnumber.setText("Contact Number: "+jsonObject.getString("coordinatorNumber"));

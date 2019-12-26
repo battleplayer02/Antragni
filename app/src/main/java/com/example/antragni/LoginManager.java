@@ -66,22 +66,22 @@ public class LoginManager {
     public boolean checkLogin(){
         // Check login status
         if(!this.isLoggedIn()){
-//            // user is not logged in redirect him to Login Activity
-//            Intent i = new Intent(_context, Participants.class);
-//            // Closing all the Activities
-//            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//
-//            // Add new Flag to start new Activity
-//            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//
-//            // Staring Login Activity
+            // user is not logged in redirect him to Login Activity
+            Intent i = new Intent(_context, InsideLogin.class);
+            // Closing all the Activities
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            // Add new Flag to start new Activity
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            // Staring Login Activity
 //            a.finish();
-//            _context.startActivity(i);
+            _context.startActivity(i);
+            return false;
         }
         else {
             return true;
         }
-        return false;
     }
 
     public HashMap<String, String> getUserDetails(){

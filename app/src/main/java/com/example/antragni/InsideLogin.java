@@ -33,7 +33,7 @@ public class InsideLogin extends AppCompatActivity {
     EditText email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if(new LoginManager(this).checkLogin()){
+        if(new LoginManager(this).isLoggedIn()){
 
             startActivity(new Intent(InsideLogin.this,Participants.class));
         }
