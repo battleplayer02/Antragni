@@ -77,6 +77,7 @@ public class HomeFragment extends Fragment {
                         for (int i = 0; i < array.length(); i++) {
                             JSONObject word = array.getJSONObject(i);
                             HomePojo showBlackboard=new HomePojo();
+                            showBlackboard.setEventid(word.optString("eventid"));
                             showBlackboard.setEventname(word.optString("eventname"));
                             showBlackboard.setTypecard(word.optString("category"));
                             showBlackboard.setPlacecard(word.optString("location"));

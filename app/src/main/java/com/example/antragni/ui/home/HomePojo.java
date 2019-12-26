@@ -1,7 +1,22 @@
 package com.example.antragni.ui.home;
 
 public class HomePojo {
-    String eventpic,eventname,datecard,placecard,typecard,eventamount;
+    String eventpic;
+    String eventname;
+    String datecard;
+    String placecard;
+    String typecard;
+    String eventamount;
+    String eventid;
+
+    public String getEventid() {
+        return eventid;
+    }
+
+    public void setEventid(String eventid) {
+        this.eventid = eventid;
+    }
+
 
     public String getEventamount() {
         return eventamount;

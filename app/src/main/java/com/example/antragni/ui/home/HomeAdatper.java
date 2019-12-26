@@ -53,7 +53,8 @@ public class HomeAdatper extends RecyclerView.Adapter<HomeAdatper.HomeViewHolder
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ctx.startActivity(new Intent(ctx, InsideEvent.class));
+
+                ctx.startActivity(new Intent(ctx, InsideEvent.class).putExtra("eventid",homePojo.getEventid()));
             }
         });
     }

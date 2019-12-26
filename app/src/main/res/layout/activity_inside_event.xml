@@ -100,13 +100,26 @@
                 app:layout_constraintTop_toBottomOf="@+id/eventName"
                 android:text="By Himanshu Shekhar" />
 
+            <TextView
+                android:id="@+id/eventOrganiserNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_margin_moderate"
+                android:fontFamily="sans-serif-thin"
+                android:textColor="@color/dark_grey"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@+id/eventOrganiserName"
+                app:layout_constraintStart_toStartOf="@+id/eventOrganiserName"
+                app:layout_constraintTop_toBottomOf="@+id/eventOrganiserName"
+                android:text="78787877" />
+
             <LinearLayout
                 android:id="@+id/eventTimingLinearLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/layout_margin_medium"
                 android:layout_marginLeft="@dimen/layout_margin_medium"
-                android:layout_marginTop="@dimen/layout_margin_medium"
+                android:layout_marginTop="25dp"
                 android:layout_marginEnd="@dimen/layout_margin_medium"
                 android:layout_marginRight="@dimen/layout_margin_medium"
                 android:background="?selectableItemBackground"
@@ -130,18 +143,12 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/eventDateDetailsFirst"
+                        android:id="@+id/eventDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/dark_grey"
                         android:text="Tuesday June 5" />
 
-                    <TextView
-                        android:id="@+id/eventDateDetailsSecond"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/dark_grey"
-                        android:text="Wed June 5" />
 
                 </LinearLayout>
             </LinearLayout>
@@ -165,14 +172,28 @@
                     android:layout_margin="@dimen/layout_margin_medium"
                     app:srcCompat="@drawable/ic_location_on_black" />
 
-                <TextView
-                    android:id="@+id/eventLocationTextView"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Venue: GHRCE"
                     android:layout_margin="@dimen/layout_margin_medium"
-                    android:textColor="@color/dark_grey"
-                    ></TextView>
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Venue:"
+                        android:textColor="@color/dark_grey"
+                        tools:text="Venue:" />
+
+                    <TextView
+                        android:id="@+id/eventVenue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:text="GHRCE"
+                        android:lines="2"
+                        android:textColor="@color/dark_grey" />
+                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
@@ -200,7 +221,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="@+id/eventLocationLinearLayout"
-                app:layout_constraintTop_toBottomOf="@+id/eventLocationLinearLayout">
+                app:layout_constraintTop_toBottomOf="@+id/amountLinearLayout">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -232,6 +253,49 @@
                 </LinearLayout>
 
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/amountLinearLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/layout_margin_large"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/refundPolicyLinearLayout"
+                app:layout_constraintTop_toBottomOf="@+id/eventLocationLinearLayout">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/layout_margin_medium"
+                    app:srcCompat="@drawable/ic_baseline_refund" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/layout_margin_medium"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Event Amount"
+                        android:textColor="@color/dark_grey"
+                        tools:text="Event Amount" />
+
+                    <TextView
+                        android:id="@+id/eventAmount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:text="100"
+                        android:lines="2"
+                        android:textColor="@color/dark_grey" />
+                </LinearLayout>
+
+            </LinearLayout>
+
 
             <LinearLayout
                 android:id="@+id/aboutEventContainer"
@@ -275,18 +339,18 @@
                     android:ellipsize="end"
                     android:lines="4"
                     android:text="Description" />
-
                 <TextView
-                    android:id="@+id/seeMore"
+                    android:id="@+id/eventCategory"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/layout_margin_large"
                     android:layout_marginRight="@dimen/layout_margin_large"
-                    android:layout_marginBottom="@dimen/layout_margin_extra_large"
-                    android:text="@string/see_more"
-                    android:textColor="@color/dark_grey"
-                    android:textStyle="bold"
-                    android:visibility="gone" />
+                    android:layout_marginBottom="@dimen/layout_margin_large"
+                    android:ellipsize="end"
+                    android:lines="4"
+                    android:text="Category"/>
+
+
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="match_parent"
                     android:id="@+id/ticket"
