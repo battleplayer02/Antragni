@@ -76,7 +76,7 @@ public class InsideEvent extends AppCompatActivity {
                             if (success.equals("1"))
                             {
                                 ecategory.setText(jsonObject.getString("category"));
-                                cname.setText("By:"+jsonObject.getString("coordinator"));
+                                cname.setText("By: "+jsonObject.getString("coordinator").toUpperCase());
                                 cnumber.setText("Contact Number: "+jsonObject.getString("coordinatorNumber"));
                                 eamount.setText("Rs. "+jsonObject.getString("cost"));
                                 edesc.setText(jsonObject.getString("description"));
