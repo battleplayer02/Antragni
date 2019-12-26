@@ -50,7 +50,6 @@ public class InsideEvent extends AppCompatActivity {
 
 
         eventid=getIntent().getStringExtra("eventid");
-        Toast.makeText(this, eventid, Toast.LENGTH_SHORT).show();
 
         Regist();
 
@@ -77,18 +76,13 @@ public class InsideEvent extends AppCompatActivity {
                             if (success.equals("1"))
                             {
                                 ecategory.setText(jsonObject.getString("category"));
-                                cname.setText(jsonObject.getString("coordinator"));
-                                cnumber.setText(jsonObject.getString("coordinatorNumber"));
-                                eamount.setText(jsonObject.getString("cost"));
+                                cname.setText("By:"+jsonObject.getString("coordinator"));
+                                cnumber.setText("Contact Number: "+jsonObject.getString("coordinatorNumber"));
+                                eamount.setText("Rs. "+jsonObject.getString("cost"));
                                 edesc.setText(jsonObject.getString("description"));
                                 edate.setText(jsonObject.getString("eventdate"));
-                                ename.setText(jsonObject.getString("eventname"));
+                                ename.setText(jsonObject.getString("eventname").toUpperCase());
                                 eplace.setText(jsonObject.getString("location"));
-
-
-
-
-
 
                             }
                             else
