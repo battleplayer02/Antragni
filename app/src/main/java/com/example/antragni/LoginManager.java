@@ -34,6 +34,7 @@ public class LoginManager {
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_LASTNAME = "name";
     public static final String KEY_FIRSTNAME = "name";
+    public static final String KEY_USERTYPE="admin";
 
     // Constructor
     public LoginManager(Context context){

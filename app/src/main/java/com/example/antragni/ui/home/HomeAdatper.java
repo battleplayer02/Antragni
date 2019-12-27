@@ -13,15 +13,19 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.antragni.AdminInsideEvent;
+import com.example.antragni.CoordinatorInsideEvent;
 import com.example.antragni.InsideEvent;
+import com.example.antragni.LoginManager;
 import com.example.antragni.R;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 
 public class HomeAdatper extends RecyclerView.Adapter<HomeAdatper.HomeViewHolder> {
-
     Context ctx;
     ArrayList<HomePojo> homePojoArrayList;
+    String usertype = LoginManager.KEY_USERTYPE;
 
     public HomeAdatper(FragmentActivity ctx, ArrayList<HomePojo> homePojoArrayList) {
         this.ctx = ctx;
@@ -32,7 +36,7 @@ public class HomeAdatper extends RecyclerView.Adapter<HomeAdatper.HomeViewHolder
     public HomeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater inflater = LayoutInflater.from(ctx);
-        View view = inflater.inflate(R.layout.events_card,null);
+        View view = inflater.inflate(R.layout.events_card, null);
         return new HomeViewHolder(view);
     }
 
@@ -40,11 +44,11 @@ public class HomeAdatper extends RecyclerView.Adapter<HomeAdatper.HomeViewHolder
     public void onBindViewHolder(@NonNull HomeViewHolder holder, int position) {
         final HomePojo homePojo = homePojoArrayList.get(position);
 
-        String pro_img=homePojo.getEventpic();
+        String pro_img = homePojo.getEventpic();
 //        byte[] byteArray= Base64.decode(pro_img,Base64.DEFAULT);
 //        Bitmap bmp= BitmapFactory.decodeByteArray(byteArray,0,byteArray.length);
 //        holder.imgcard.setImageBitmap(bmp);
-        System.out.println(homePojo.getDatecard()+"123"+homePojo.getPlacecard()+"123 "+homePojo.getTypecard());
+        System.out.println(homePojo.getDatecard() + "123" + homePojo.getPlacecard() + "123 " + homePojo.getTypecard());
         holder.datecard.setText(homePojo.getDatecard());
         holder.placecard.setText(homePojo.getPlacecard());
         holder.typecard.setText(homePojo.getTypecard());
@@ -53,30 +57,36 @@ public class HomeAdatper extends RecyclerView.Adapter<HomeAdatper.HomeViewHolder
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                ctx.startActivity(new Intent(ctx, InsideEvent.class).putExtra("eventid",homePojo.getEventid()));
+                if (usertype.equals("admin")) {
+                    ctx.startActivity(new Intent(ctx, AdminInsideEvent.class));
+                } else if (usertype.equals("coordinator")) {
+                    ctx.startActivity(new Intent(ctx, CoordinatorInsideEvent.class));
+                } else {
+                    ctx.startActivity(new Intent(ctx, InsideEvent.class).putExtra("eventid", homePojo.getEventid()));
+                }
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return homePojoArrayList.size();    }
+        return homePojoArrayList.size();
+    }
 
     public class HomeViewHolder extends RecyclerView.ViewHolder {
         ImageView imgcard;
-        TextView datecard,placecard,typecard,eventname,eventamount;
+        TextView datecard, placecard, typecard, eventname, eventamount;
         CardView cardView;
 
         public HomeViewHolder(@NonNull View itemView) {
             super(itemView);
 //            imgcard=itemView.findViewById(R.id.eventpic);
-            datecard=itemView.findViewById(R.id.datecard);
-            placecard=itemView.findViewById(R.id.placecard);
-            typecard=itemView.findViewById(R.id.typecard);
-            eventname=itemView.findViewById(R.id.eventname);
-            cardView=itemView.findViewById(R.id.allEventsCard);
-            eventamount=itemView.findViewById(R.id.eventamount);
+            datecard = itemView.findViewById(R.id.datecard);
+            placecard = itemView.findViewById(R.id.placecard);
+            typecard = itemView.findViewById(R.id.typecard);
+            eventname = itemView.findViewById(R.id.eventname);
+            cardView = itemView.findViewById(R.id.allEventsCard);
+            eventamount = itemView.findViewById(R.id.eventamount);
         }
     }
 }

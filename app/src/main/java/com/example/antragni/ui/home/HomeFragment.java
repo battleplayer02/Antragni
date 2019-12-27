@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.antragni.R;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,6 +26,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
+    ShimmerFrameLayout shimmerFrameLayout;
 
     private static final String URL_PRODUCTS ="http://himanshushekhar.ml/antragini/eventselectquery.php" ;
     RecyclerView recyclerView;
@@ -35,6 +37,8 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        shimmerFrameLayout=new ShimmerFrameLayout(getContext());
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) root.findViewById(R.id.swipeToRefresh);
 
@@ -89,6 +93,7 @@ public class HomeFragment extends Fragment {
                                 showBlackboard.setDatecard(word.optString("eventdate"));
                                 showBlackboard.setEventamount(word.optString("cost"));
 
+                                shimmerFrameLayout.hideShimmer();
                                 homePojoArrayList.add(showBlackboard);
                             }
                             //creating adapter object and setting it to recyclerview
