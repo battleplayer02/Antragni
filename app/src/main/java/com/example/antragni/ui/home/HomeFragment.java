@@ -70,25 +70,31 @@ public class HomeFragment extends Fragment {
                         System.out.println(response+"response");
                         JSONArray array=new JSONArray(response);
                         //traversing through all the object
-                        if(homePojoArrayList.size()>=0)
-                        {
-                            homePojoArrayList.clear();
-                        }
-                        for (int i = 0; i < array.length(); i++) {
-                            JSONObject word = array.getJSONObject(i);
-                            HomePojo showBlackboard=new HomePojo();
-                            showBlackboard.setEventid(word.optString("eventid"));
-                            showBlackboard.setEventname(word.optString("eventname"));
-                            showBlackboard.setTypecard(word.optString("category"));
-                            showBlackboard.setPlacecard(word.optString("location"));
-                            showBlackboard.setDatecard(word.optString("eventdate"));
-                            showBlackboard.setEventamount(word.optString("cost"));
+                        JSONObject w= array.getJSONObject(0);
 
-                            homePojoArrayList.add(showBlackboard);
+                        if(!w.getString("success").equals("0"))
+                        {
+
+                            if(homePojoArrayList.size()>0)
+                            {
+                                homePojoArrayList.clear();
+                            }
+                            for (int i = 0; i < array.length(); i++) {
+                                JSONObject word = array.getJSONObject(i);
+                                HomePojo showBlackboard=new HomePojo();
+                                showBlackboard.setEventid(word.optString("eventid"));
+                                showBlackboard.setEventname(word.optString("eventname"));
+                                showBlackboard.setTypecard(word.optString("category"));
+                                showBlackboard.setPlacecard(word.optString("location"));
+                                showBlackboard.setDatecard(word.optString("eventdate"));
+                                showBlackboard.setEventamount(word.optString("cost"));
+
+                                homePojoArrayList.add(showBlackboard);
+                            }
+                            //creating adapter object and setting it to recyclerview
+                            HomeAdatper adapter = new HomeAdatper(getActivity(), homePojoArrayList);
+                            recyclerView.setAdapter(adapter);
                         }
-                        //creating adapter object and setting it to recyclerview
-                        HomeAdatper adapter = new HomeAdatper(getActivity(), homePojoArrayList);
-                        recyclerView.setAdapter(adapter);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

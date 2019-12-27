@@ -33,16 +33,10 @@ public class InsideLogin extends AppCompatActivity {
     EditText email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        if(new LoginManager(this).isLoggedIn()){
+        setTheme(R.style.AppTheme);
+        super.onCreate(savedInstanceState);
 
-            startActivity(new Intent(InsideLogin.this,Participants.class));
-        }
-        else {
-            setTheme(R.style.AppTheme);
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.inside_login);
-        }
-
+        setContentView(R.layout.inside_login);
 
         login = (Button)findViewById(R.id.next);
         email = (EditText)findViewById(R.id.email);
@@ -50,6 +44,7 @@ public class InsideLogin extends AppCompatActivity {
         progressDialog = new ProgressDialog(InsideLogin.this);
         progressDialog.setMessage("Please Wait...");
         progressDialog.setCancelable(false);
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override

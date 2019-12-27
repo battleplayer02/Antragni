@@ -30,6 +30,15 @@ public class PurchaseTicket extends AppCompatActivity {
         upiid=(EditText)findViewById(R.id.upiid);
         sender=(EditText)findViewById(R.id.sender);
 
+        amount.setClickable(false);
+        upiid.setClickable(false);
+        sender.setClickable(false);
+
+        amount.setFocusable(false);
+        upiid.setFocusable(false);
+        sender.setFocusable(false);
+
+
         sender.setText(getIntent().getStringExtra("name"));
         upiid.setText("vaishnavi.b.k.2000@okaxis");
         amount.setText(getIntent().getStringExtra("eventAmount"));

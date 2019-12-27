@@ -63,7 +63,7 @@ public class LoginManager {
      * If false it will redirect user to login page
      * Else won't do anything
      * */
-    public boolean checkLogin(){
+    public void checkLogin(){
         // Check login status
         if(!this.isLoggedIn()){
             // user is not logged in redirect him to Login Activity
@@ -75,12 +75,11 @@ public class LoginManager {
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             // Staring Login Activity
-//            a.finish();
             _context.startActivity(i);
-            return false;
         }
         else {
-            return true;
+            Intent i = new Intent(_context, Participants.class);
+            _context.startActivity(i);
         }
     }
 

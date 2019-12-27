@@ -14,7 +14,6 @@ public class Participants extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        overridePendingTransition(0,0);
         setTheme(R.style.AppTheme_NoActionBar);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_participants);
