@@ -57,9 +57,9 @@ public class HomeAdatper extends RecyclerView.Adapter<HomeAdatper.HomeViewHolder
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (usertype.equals("admin")) {
+                if (new LoginManager(ctx).getUserDetails().get(LoginManager.KEY_USERTYPE).equals("admin")) {
                     ctx.startActivity(new Intent(ctx, AdminInsideEvent.class));
-                } else if (usertype.equals("coordinator")) {
+                } else if (new LoginManager(ctx).getUserDetails().get(LoginManager.KEY_USERTYPE).equals("coordinator")) {
                     ctx.startActivity(new Intent(ctx, CoordinatorInsideEvent.class));
                 } else {
                     ctx.startActivity(new Intent(ctx, InsideEvent.class).putExtra("eventid", homePojo.getEventid()));
