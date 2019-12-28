@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -25,7 +26,6 @@ import java.util.ArrayList;
 public class HomeAdatper extends RecyclerView.Adapter<HomeAdatper.HomeViewHolder> {
     Context ctx;
     ArrayList<HomePojo> homePojoArrayList;
-    String usertype = LoginManager.KEY_USERTYPE;
 
     public HomeAdatper(FragmentActivity ctx, ArrayList<HomePojo> homePojoArrayList) {
         this.ctx = ctx;
@@ -64,6 +64,8 @@ public class HomeAdatper extends RecyclerView.Adapter<HomeAdatper.HomeViewHolder
                 } else {
                     ctx.startActivity(new Intent(ctx, InsideEvent.class).putExtra("eventid", homePojo.getEventid()));
                 }
+                Toast.makeText(ctx, LoginManager.KEY_USERTYPE, Toast.LENGTH_SHORT).show();
+
             }
         });
     }

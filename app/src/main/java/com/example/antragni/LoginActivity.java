@@ -77,17 +77,18 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     Log.e("ss", "onResponse: " + response);
                     JSONObject object = new JSONObject(response);
+                    System.out.println("kale: "+response);
                     String success = object.getString("success");
-//                    Toast.makeText(LoginActivity.this, success, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
                     if (success.equals("1")){
-//                        public void createLoginSession(String id, String email,String password
-//                        ,String contactnumber,String firstnem,String lastname){
-                        session.createLoginSession(object.optString("id"),
+                        session.createLoginSession(
+                                object.optString("id"),
                                 email.getText().toString(),
                                 password.getText().toString(),
                                 object.optString("phonenumber"),
-                                object.optString("firstname"),
-                                object.optString("lastname")
+                                object.optString("fn"),
+                                object.optString("ll"),
+                                object.optString("type")
                         );
 
                         builder.dismiss();

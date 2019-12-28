@@ -46,15 +46,17 @@ public class LoginManager {
     /**
      * Create login session
      * */
-    public void createLoginSession(String id, String email,String password,String contactnumber,String firstnem,String lastname){
+    public void createLoginSession(String id, String email,String password,String contactnumber,
+                                   String firstname,String lastname,String type){
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
         editor.putString(KEY_ID, id);
         editor.putString(KEY_CONTACT_NUMBER, contactnumber);
         editor.putString(KEY_PASSWORD, password);
         editor.putString(KEY_EMAIL, email);
-        editor.putString(KEY_FIRSTNAME, firstnem);
+        editor.putString(KEY_FIRSTNAME, firstname);
         editor.putString(KEY_LASTNAME, lastname);
+        editor.putString(KEY_USERTYPE, type);
         editor.commit();
     }
 
@@ -95,6 +97,7 @@ public class LoginManager {
         user.put(KEY_CONTACT_NUMBER, pref.getString(KEY_CONTACT_NUMBER, null));
         user.put(KEY_FIRSTNAME, pref.getString(KEY_FIRSTNAME, null));
         user.put(KEY_LASTNAME, pref.getString(KEY_LASTNAME, null));
+        user.put(KEY_USERTYPE, pref.getString(KEY_USERTYPE, null));
         // return user
         return user;
     }

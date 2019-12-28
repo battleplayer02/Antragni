@@ -98,7 +98,8 @@ public class NewAccount extends AppCompatActivity {
                                 password,
                                 phonenumber,
                                 firstname,
-                                lastname);
+                                lastname,
+                                object.optString("type"));
                         builder.dismiss();
                         startActivity(new Intent(NewAccount.this,Participants.class));
                         finish();

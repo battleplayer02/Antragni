@@ -17,7 +17,7 @@ import com.example.antragni.R;
 public class NotificationsFragment extends Fragment {
 
     TextView logout;
-    TextView addevent;
+    TextView addevent,name,type,email;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -25,6 +25,14 @@ public class NotificationsFragment extends Fragment {
 
         addevent=root.findViewById(R.id.addEvents);
         logout = root.findViewById(R.id.logout);
+        name = root.findViewById(R.id.name);
+        type = root.findViewById(R.id.type);
+        email = root.findViewById(R.id.email);
+
+        name.setText(new LoginManager(getContext()).getUserDetails().get(LoginManager.KEY_FIRSTNAME)
+                + " " + new LoginManager(getContext()).getUserDetails().get(LoginManager.KEY_LASTNAME));
+        email.setText(new LoginManager(getContext()).getUserDetails().get(LoginManager.KEY_EMAIL));
+        type.setText(LoginManager.KEY_USERTYPE);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,6 +47,9 @@ public class NotificationsFragment extends Fragment {
                 startActivity(new Intent(root.getContext(), PostEvent.class));
             }
         });
+
+
+
         return root;
     }
 }
