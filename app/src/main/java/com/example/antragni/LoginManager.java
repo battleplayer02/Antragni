@@ -33,8 +33,8 @@ public class LoginManager {
     public static final String KEY_EMAIL = "email";
     public static final String KEY_PASSWORD = "password";
     public static final String KEY_LASTNAME = "name";
-    public static final String KEY_FIRSTNAME = "name";
-    public static final String KEY_USERTYPE="admin";
+    public static final String KEY_FIRSTNAME = "igiuv";
+    public static final String KEY_USERTYPE="21313";
 
     // Constructor
     public LoginManager(Context context){

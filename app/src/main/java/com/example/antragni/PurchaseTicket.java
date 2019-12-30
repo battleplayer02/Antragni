@@ -1,163 +1,151 @@
 package com.example.antragni;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
 
 public class PurchaseTicket extends AppCompatActivity {
+    ProgressDialog progressDialog;
 
-    EditText amount,upiid,sender;
-    final int UPI_PAYMENT = 0;
-
+    EditText firstname, lastname, email, contactnumber, section,
+            alternatecontactnumber, semester, year, branch, college;
+    Button add;
+    String eventid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_purchase_ticket);
+        firstname = (EditText) findViewById(R.id.firstName);
+        lastname = (EditText) findViewById(R.id.lastName);
+        email = (EditText) findViewById(R.id.email);
+        contactnumber = (EditText) findViewById(R.id.contactno);
+        alternatecontactnumber = (EditText) findViewById(R.id.alternatecontactnumber);
+        semester = (EditText) findViewById(R.id.semester);
+        year = (EditText) findViewById(R.id.year);
+        branch = (EditText) findViewById(R.id.branch);
+        college = (EditText) findViewById(R.id.college);
+        section = (EditText) findViewById(R.id.section);
 
-        amount=(EditText)findViewById(R.id.amount);
-        upiid=(EditText)findViewById(R.id.upiid);
-        sender=(EditText)findViewById(R.id.sender);
+        progressDialog = new ProgressDialog(PurchaseTicket.this);
+        progressDialog.setMessage("Please Wait...");
+        progressDialog.setCancelable(false);
 
-        amount.setClickable(false);
-        upiid.setClickable(false);
-        sender.setClickable(false);
+        add = (Button) findViewById(R.id.btsignup);
 
-        amount.setFocusable(false);
-        upiid.setFocusable(false);
-        sender.setFocusable(false);
+        eventid = getIntent().getStringExtra("iii");
 
-
-        sender.setText(getIntent().getStringExtra("name"));
-        upiid.setText("vaishnavi.b.k.2000@okaxis");
-        amount.setText(getIntent().getStringExtra("eventAmount"));
-        ((Button)findViewById(R.id.register)).setOnClickListener(new View.OnClickListener() {
+        Toast.makeText(this, eventid, Toast.LENGTH_SHORT).show();
+        add.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                payUsingUpi(amount.getText().toString(),"vaishnavi.b.k.2000@okaxis",sender.getText().toString());
+            public void onClick(View v) {
+                progressDialog.show();
+                participate();
             }
         });
     }
 
+    public void participate() {
+        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://3.20.14.234/antragini/participate.php",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            System.out.println(response);
+                            final JSONObject jsonObject = new JSONObject(response);
+                            // Process your json here as required
+                            if (jsonObject.getString("success").equals("1")) {
+                                progressDialog.dismiss();
+                                new AlertDialog.Builder(PurchaseTicket.this)
+                                        .setMessage("Registered Sucessfully")
+                                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                finish();
+                                            }
+                                        })
+                                        .create().show();
+                            } else {
+                                progressDialog.dismiss();
+                                new AlertDialog.Builder(PurchaseTicket.this)
+                                        .setMessage("Error")
+                                        .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
 
-
-
-    void payUsingUpi(String amount, String upiId, String name) {
-
-        Uri uri = Uri.parse("upi://pay").buildUpon()
-                .appendQueryParameter("pa", upiId)
-                .appendQueryParameter("pn", name)
-                .appendQueryParameter("am", amount)
-                .appendQueryParameter("cu", "INR")
-                .build();
-
-
-        Intent upiPayIntent = new Intent(Intent.ACTION_VIEW);
-        upiPayIntent.setData(uri);
-
-        // will always show a dialog to user to choose an app
-        Intent chooser = Intent.createChooser(upiPayIntent, "Pay with");
-
-        // check if intent resolves
-        if(null != chooser.resolveActivity(getPackageManager())) {
-            startActivityForResult(chooser, UPI_PAYMENT);
-        } else {
-            Toast.makeText(PurchaseTicket.this,"No UPI app found, please install one to continue",Toast.LENGTH_SHORT).show();
-        }
-
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        switch (requestCode) {
-            case UPI_PAYMENT:
-                if ((RESULT_OK == resultCode) || (resultCode == 11)) {
-                    if (data != null) {
-                        String trxt = data.getStringExtra("response");
-                        Log.d("UPI", "onActivityResult: " + trxt);
-                        ArrayList<String> dataList = new ArrayList<>();
-                        dataList.add(trxt);
-                        upiPaymentDataOperation(dataList);
-                    } else {
-                        Log.d("UPI", "onActivityResult: " + "Return data is null");
-                        ArrayList<String> dataList = new ArrayList<>();
-                        dataList.add("nothing");
-                        upiPaymentDataOperation(dataList);
+                                            }
+                                        })
+                                        .create().show();
+                            }
+                        } catch (JSONException e) {
+                            // Handle json exception as needed
+                            e.printStackTrace();
+                        }
                     }
-                } else {
-                    Log.d("UPI", "onActivityResult: " + "Return data is null"); //when user simply back without payment
-                    ArrayList<String> dataList = new ArrayList<>();
-                    dataList.add("nothing");
-                    upiPaymentDataOperation(dataList);
-                }
-                break;
-        }
-    }
-
-    private void upiPaymentDataOperation(ArrayList<String> data) {
-        if (isConnectionAvailable(getApplicationContext())) {
-            String str = data.get(0);
-            Log.d("UPIPAY", "upiPaymentDataOperation: "+str);
-            String paymentCancel = "";
-            if(str == null) str = "discard";
-            String status = "";
-            String approvalRefNo = "";
-            String response[] = str.split("&");
-            for (int i = 0; i < response.length; i++) {
-                String equalStr[] = response[i].split("=");
-                if(equalStr.length >= 2) {
-                    if (equalStr[0].toLowerCase().equals("Status".toLowerCase())) {
-                        status = equalStr[1].toLowerCase();
-                    }
-                    else if (equalStr[0].toLowerCase().equals("ApprovalRefNo".toLowerCase()) || equalStr[0].toLowerCase().equals("txnRef".toLowerCase())) {
-                        approvalRefNo = equalStr[1];
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        String json = null;
+                        NetworkResponse response = error.networkResponse;
+                        if (response != null && response.data != null) {
+                            switch (response.statusCode) {
+                                default:
+                                    String value = null;
+                                    try {
+                                        // It is important to put UTF-8 to receive proper data else you will get byte[] parsing error.
+                                        value = new String(response.data, "UTF-8");
+                                    } catch (UnsupportedEncodingException e) {
+                                        e.printStackTrace();
+                                        progressDialog.dismiss();
+                                    }
+                                    break;
+                            }
+                        }
+                        error.printStackTrace();
                     }
                 }
-                else {
-                    paymentCancel = "Payment cancelled by user.";
-                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("firstname", firstname.getText().toString());
+                params.put("lastname", lastname.getText().toString());
+                params.put("email", email.getText().toString());
+                params.put("contactnumber", contactnumber.getText().toString());
+                params.put("alternatecontactnumber", email.getText().toString());
+                params.put("sem", semester.getText().toString());
+                params.put("year", year.getText().toString());
+                params.put("section", section.getText().toString());
+                params.put("branch", branch.getText().toString());
+                params.put("college", college.getText().toString());
+                params.put("eventid", eventid);
+                return params;
             }
-
-            if (status.equals("success")) {
-                //Code to handle successful transaction here.
-                Toast.makeText(PurchaseTicket.this, "Transaction successful.", Toast.LENGTH_SHORT).show();
-                Log.d("UPI", "responseStr: "+approvalRefNo);
-            }
-            else if("Payment cancelled by user.".equals(paymentCancel)) {
-                Toast.makeText(PurchaseTicket.this, "Payment cancelled by user.", Toast.LENGTH_SHORT).show();
-            }
-            else {
-                Toast.makeText(PurchaseTicket.this, "Transaction failed.Please try again", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            Toast.makeText(PurchaseTicket.this, "Internet connection is not available. Please check and try again", Toast.LENGTH_SHORT).show();
-        }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(PurchaseTicket.this);
+        requestQueue.add(postRequest);
     }
-
-    public static boolean isConnectionAvailable(Context context) {
-        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (connectivityManager != null) {
-            NetworkInfo netInfo = connectivityManager.getActiveNetworkInfo();
-            if (netInfo != null && netInfo.isConnected()
-                    && netInfo.isConnectedOrConnecting()
-                    && netInfo.isAvailable()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
 }

@@ -32,7 +32,7 @@ public class InsideEvent extends AppCompatActivity {
     TextView ename, cname, cnumber, edate, eplace, ecategory, eamount, edesc;
     String eventid;
     Button button;
-    private static final String URL_REGIST = "http://himanshushekhar.ml/antragini/insideEvent.php";
+    private static final String URL_REGIST = "http://3.20.14.234/antragini/insideEvent.php";
     String cn;
     String amount;
 
@@ -63,83 +63,81 @@ public class InsideEvent extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     progressDialog.create();
-                    enroll(LoginManager.KEY_ID, eventid, amount);
                     Intent intent = new Intent(InsideEvent.this, PurchaseTicket.class);
-                    intent.putExtra("name", cn);
-                    intent.putExtra("eventAmount", jsonObject.getString("cost"));
+                    intent.putExtra("iii",eventid);
                     startActivity(intent);
-                } catch (JSONException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         });
     }
 
-    public void enroll(final String userid, final String eventid, final String amount) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://himanshushekhar.ml/antragini/enroll.php",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            jsonObject = new JSONObject(response);
-                            System.out.println(response + "response");
-                            String success = jsonObject.getString("success");
-
-
-                            if (success.equals("1")) {
-                                progressDialog.dismiss();
-                                 new AlertDialog.Builder(InsideEvent.this)
-                                        .setMessage("Redirecting...")
-                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
-                                            }
-                                        }).create().show();
-
-                            } else {
-                                AlertDialog.Builder builder = new AlertDialog.Builder(InsideEvent.this)
-                                        .setMessage("No Event Found")
-                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialogInterface, int i) {
-                                            }
-                                        });
-                                builder.create().show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            AlertDialog.Builder builder = new AlertDialog.Builder(InsideEvent.this)
-                                    .setMessage("No Event Found")
-                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                        @Override
-                                        public void onClick(DialogInterface dialogInterface, int i) {
-                                        }
-                                    });
-                            builder.create().show();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-
-                    }
-                }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("userid",userid);
-                params.put("eventid",eventid);
-                params.put("amount",amount);
-                return params;
-            }
-        };
-
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-
-    }
+//    public void enroll(final String userid, final String eventid, final String amount) {
+//        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://himanshushekhar.ml/antragini/enroll.php",
+//                new Response.Listener<String>() {
+//                    @Override
+//                    public void onResponse(String response) {
+//                        try {
+//                            jsonObject = new JSONObject(response);
+//                            System.out.println(response + "response");
+//                            String success = jsonObject.getString("success");
+//
+//
+//                            if (success.equals("1")) {
+//                                progressDialog.dismiss();
+//                                 new AlertDialog.Builder(InsideEvent.this)
+//                                        .setMessage("Redirecting...")
+//                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialogInterface, int i) {
+//                                            }
+//                                        }).create().show();
+//
+//                            } else {
+//                                AlertDialog.Builder builder = new AlertDialog.Builder(InsideEvent.this)
+//                                        .setMessage("No Event Found")
+//                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                                            @Override
+//                                            public void onClick(DialogInterface dialogInterface, int i) {
+//                                            }
+//                                        });
+//                                builder.create().show();
+//                            }
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                            AlertDialog.Builder builder = new AlertDialog.Builder(InsideEvent.this)
+//                                    .setMessage("No Event Found")
+//                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                                        @Override
+//                                        public void onClick(DialogInterface dialogInterface, int i) {
+//                                        }
+//                                    });
+//                            builder.create().show();
+//                        }
+//                    }
+//                },
+//                new Response.ErrorListener() {
+//                    @Override
+//                    public void onErrorResponse(VolleyError error) {
+//                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+//
+//                    }
+//                }) {
+//            @Override
+//            protected Map<String, String> getParams() throws AuthFailureError {
+//                Map<String, String> params = new HashMap<>();
+//                params.put("userid",userid);
+//                params.put("eventid",eventid);
+//                params.put("amount",amount);
+//                return params;
+//            }
+//        };
+//
+//        RequestQueue requestQueue = Volley.newRequestQueue(this);
+//        requestQueue.add(stringRequest);
+//
+//    }
 
     public void Regist() {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_REGIST,

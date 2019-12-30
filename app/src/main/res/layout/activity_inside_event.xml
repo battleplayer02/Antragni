@@ -60,7 +60,7 @@
 
 
             <ImageView
-                android:src="@drawable/header"
+                android:src="@drawable/sample"
                 android:id="@+id/eventImage"
                 android:layout_width="@dimen/layout_margin_none"
                 android:layout_height="@dimen/layout_margin_none"
@@ -332,7 +332,7 @@
                 <TextView
                     android:id="@+id/eventDescription"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="158dp"
                     android:layout_marginLeft="@dimen/layout_margin_large"
                     android:layout_marginRight="@dimen/layout_margin_large"
                     android:layout_marginBottom="@dimen/layout_margin_large"
@@ -347,7 +347,6 @@
                     android:layout_marginRight="@dimen/layout_margin_large"
                     android:layout_marginBottom="@dimen/layout_margin_large"
                     android:ellipsize="end"
-                    android:lines="4"
                     android:text="Category"/>
 
 

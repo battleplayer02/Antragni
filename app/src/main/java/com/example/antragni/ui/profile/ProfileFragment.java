@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,7 +16,7 @@ import com.example.antragni.LoginManager;
 import com.example.antragni.PostEvent;
 import com.example.antragni.R;
 
-public class NotificationsFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
     TextView logout;
     TextView addevent,name,type,email;
@@ -32,7 +34,7 @@ public class NotificationsFragment extends Fragment {
         name.setText(new LoginManager(getContext()).getUserDetails().get(LoginManager.KEY_FIRSTNAME)
                 + " " + new LoginManager(getContext()).getUserDetails().get(LoginManager.KEY_LASTNAME));
         email.setText(new LoginManager(getContext()).getUserDetails().get(LoginManager.KEY_EMAIL));
-        type.setText(LoginManager.KEY_USERTYPE);
+        type.setText(new LoginManager(getContext()).getUserDetails().get(LoginManager.KEY_USERTYPE));
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,6 +50,8 @@ public class NotificationsFragment extends Fragment {
             }
         });
 
+        LoginManager loginManager = new LoginManager(getContext());
+        Toast.makeText(getContext(), loginManager.getUserDetails().get(LoginManager.KEY_USERTYPE)+"  "+ loginManager.getUserDetails().get(LoginManager.KEY_FIRSTNAME), Toast.LENGTH_SHORT).show();
 
 
         return root;

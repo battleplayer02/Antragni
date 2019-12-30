@@ -58,13 +58,13 @@ public class HomeAdatper extends RecyclerView.Adapter<HomeAdatper.HomeViewHolder
             @Override
             public void onClick(View view) {
                 if (new LoginManager(ctx).getUserDetails().get(LoginManager.KEY_USERTYPE).equals("admin")) {
-                    ctx.startActivity(new Intent(ctx, AdminInsideEvent.class));
+                    ctx.startActivity(new Intent(ctx, AdminInsideEvent.class).putExtra("eventid", homePojo.getEventid()));
                 } else if (new LoginManager(ctx).getUserDetails().get(LoginManager.KEY_USERTYPE).equals("coordinator")) {
                     ctx.startActivity(new Intent(ctx, CoordinatorInsideEvent.class));
                 } else {
                     ctx.startActivity(new Intent(ctx, InsideEvent.class).putExtra("eventid", homePojo.getEventid()));
                 }
-                Toast.makeText(ctx, LoginManager.KEY_USERTYPE, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ctx, new LoginManager(ctx).getUserDetails().get(LoginManager.KEY_USERTYPE)+, Toast.LENGTH_SHORT).show();
 
             }
         });

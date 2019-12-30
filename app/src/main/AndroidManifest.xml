@@ -25,7 +25,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".CoordinatorInsideEvent"></activity>
-        <activity android:name=".AdminInsideEvent" />
         <activity
             android:name=".SplashScreen"
             android:theme="@style/AppTheme.NoActionBar">
@@ -52,6 +51,8 @@
         <activity
             android:name=".InsideLogin"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".AdminInsideEvent"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
-
 </manifest>

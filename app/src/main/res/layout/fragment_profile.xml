@@ -53,7 +53,7 @@
                 android:id="@+id/type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Type"/>
+                android:text="Type" />
         </LinearLayout>
         <LinearLayout
             android:orientation="vertical"

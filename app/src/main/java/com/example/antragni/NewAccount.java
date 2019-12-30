@@ -82,7 +82,7 @@ public class NewAccount extends AppCompatActivity {
     public void register(final String email, final String password, final String firstname, final String lastname,
                          final String phonenumber, final String usertype)
     {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,"http://www.himanshushekhar.ml/antragini/signup.php"
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,"http://3.20.14.234/antragini/signup.php"
                 ,new Response.Listener<String>(){
             @Override
             public void onResponse(String response){

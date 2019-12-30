@@ -27,11 +27,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
-    TextView fp, su,login;
-    EditText email,password;
+    TextView fp, su, login;
+    EditText email, password;
     ProgressDialog builder;
 
     LoginManager session;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
@@ -40,61 +41,63 @@ public class LoginActivity extends AppCompatActivity {
         session = new LoginManager(this);
         builder = new ProgressDialog(LoginActivity.this);
 
-        fp=(TextView)findViewById(R.id.forgetpassword);
-        login=(TextView)findViewById(R.id.login);
+        fp = (TextView) findViewById(R.id.forgetpassword);
+        login = (TextView) findViewById(R.id.login);
 
-        email=(EditText)findViewById(R.id.email);
+        email = (EditText) findViewById(R.id.email);
         email.setText(getIntent().getStringExtra("email"));
-        password=(EditText)findViewById(R.id.password);
+        password = (EditText) findViewById(R.id.password);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            if(email.getText().toString().equals("admin") && password.getText().toString().equals("admin"))
-            {
-                Toast.makeText(LoginActivity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
-                finish();
-            }else {
-                login(email.getText().toString(),password.getText().toString());
-                Toast.makeText(LoginActivity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
-            }
+                if (email.getText().toString().equals("admin") && password.getText().toString().equals("admin")) {
+                    Toast.makeText(LoginActivity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    login(email.getText().toString(), password.getText().toString());
+                    Toast.makeText(LoginActivity.this, "Login Successfull", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         fp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this,ForgetPassword.class));
+                startActivity(new Intent(LoginActivity.this, ForgetPassword.class));
             }
         });
     }
 
-    public void login(final String e, final String p){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,"http://www.himanshushekhar.ml/antragini/login.php"
-                ,new Response.Listener<String>(){
+    public void login(final String e, final String p) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://3.20.14.234/antragini/login.php"
+                , new Response.Listener<String>() {
             @Override
-            public void onResponse(String response){
+            public void onResponse(String response) {
                 try {
                     Log.e("ss", "onResponse: " + response);
                     JSONObject object = new JSONObject(response);
-                    System.out.println("kale: "+response);
+                    String firstname = object.optString("fn");
+                    String lastname = object.getString("ll");
+                    String type = object.optString("type");
+                    System.out.println("kale: " + response);
                     String success = object.getString("success");
                     Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
-                    if (success.equals("1")){
+                    if (success.equals("1")) {
                         session.createLoginSession(
                                 object.optString("id"),
                                 email.getText().toString(),
                                 password.getText().toString(),
                                 object.optString("phonenumber"),
-                                object.optString("fn"),
-                                object.optString("ll"),
-                                object.optString("type")
+                                firstname,
+                                lastname,
+                                type
                         );
 
                         builder.dismiss();
-                        startActivity(new Intent(LoginActivity.this,Participants.class));
+                        startActivity(new Intent(LoginActivity.this, Participants.class));
                     }
-                    if (success.equals("0")){
+                    if (success.equals("0")) {
                         builder.dismiss();
                         new AlertDialog.Builder(LoginActivity.this)
                                 .setMessage("Login Unsuccess")
@@ -106,9 +109,9 @@ public class LoginActivity extends AppCompatActivity {
                                 .create()
                                 .show();
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     new AlertDialog.Builder(LoginActivity.this)
-                            .setMessage("Error5"+e.getMessage())
+                            .setMessage("Error5" + e.getMessage())
                             .setNegativeButton("OK", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
@@ -120,12 +123,12 @@ public class LoginActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-        }, new Response.ErrorListener(){
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 error.printStackTrace();
                 new AlertDialog.Builder(LoginActivity.this)
-                        .setMessage("Error6"+error.getMessage())
+                        .setMessage("Error6" + error.getMessage())
                         .setNegativeButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
@@ -136,13 +139,12 @@ public class LoginActivity extends AppCompatActivity {
                         .show();
                 error.printStackTrace();
             }
-        })
-        {
+        }) {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String,String> params = new HashMap<>();
-                params.put("username",e);
-                params.put("password",p);
+                Map<String, String> params = new HashMap<>();
+                params.put("username", e);
+                params.put("password", p);
                 return params;
             }
         };

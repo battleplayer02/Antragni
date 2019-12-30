@@ -65,7 +65,8 @@ public class InsideLogin extends AppCompatActivity {
     }
 
     private boolean getMail(final String email) {
-        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://www.himanshushekhar.ml/antragini/login_email.php",
+
+        StringRequest postRequest = new StringRequest(Request.Method.POST, "http://3.20.14.234/antragini/login_email.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -122,7 +123,6 @@ public class InsideLogin extends AppCompatActivity {
                 return params;
             }
         };
-
         RequestQueue requestQueue= Volley.newRequestQueue(InsideLogin.this);
         requestQueue.add(postRequest);
         return false;

@@ -36,7 +36,7 @@ public class PostEvent extends AppCompatActivity {
     EditText ename,edate,eplace,edesc,cname,cnumber,eamount,etype,enop;
     Button createEvent,eventImage;
     final Calendar myCalendar = Calendar.getInstance();
-    private static final String URL_REGIST ="http://himanshushekhar.ml/antragini/insertevent.php" ;
+    private static final String URL_REGIST ="http://3.20.14.234/antragini/insertevent.php" ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

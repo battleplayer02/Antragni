@@ -28,7 +28,7 @@ import java.util.ArrayList;
 public class HomeFragment extends Fragment {
     ShimmerFrameLayout shimmerFrameLayout;
 
-    private static final String URL_PRODUCTS ="http://himanshushekhar.ml/antragini/eventselectquery.php" ;
+    private static final String URL_PRODUCTS ="http://3.20.14.234/antragini/eventselectquery.php" ;
     RecyclerView recyclerView;
     ArrayList<HomePojo> homePojoArrayList= new ArrayList<>();
     HomeAdatper homeAdatper;
